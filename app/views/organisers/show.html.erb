@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @organiser.name %>
+</p>
+
+<p>
+  <strong>Surname:</strong>
+  <%= @organiser.surname %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @organiser.email %>
+</p>
+
+<p>
+  <strong>Skype:</strong>
+  <%= @organiser.skype %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @organiser.description %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @organiser.event %>
+</p>
+
+<%= link_to 'Edit', edit_organiser_path(@organiser) %> |
+<%= link_to 'Back', organisers_path %>

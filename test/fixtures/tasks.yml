@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  end_date: 2014-12-09 14:48:19
+  reminder: 2014-12-09 14:48:19
+  sponsor_id: 
+  organiser_id: 
+  speaker_id: 
+
+two:
+  name: MyString
+  end_date: 2014-12-09 14:48:19
+  reminder: 2014-12-09 14:48:19
+  sponsor_id: 
+  organiser_id: 
+  speaker_id: 
