@@ -8,6 +8,18 @@
 </head>
 <body>
 
+<%= nav_bar static: :top do %>
+    <%= menu_group do %>
+        <%= menu_item "Home", root_path %>
+        <%= menu_item "Events", events_path %>
+        <%= menu_item "Participants", participants_path %>
+        <%= menu_item "Speakers", speakers_path %>  
+    <% end %>
+<% end %>
+
+
+
+
 <h1>Aplikacja Conf</h1>
 
 
