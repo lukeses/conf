@@ -1,3 +1,5 @@
 class Organiser < ActiveRecord::Base
-  belongs_to :event
+  has_many :event_organisers
+  has_many :events, through: :event_organisers
+  has_many :tasks
 end

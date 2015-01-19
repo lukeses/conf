@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208225157) do
+ActiveRecord::Schema.define(version: 20150119213743) do
 
   create_table "attachments", force: true do |t|
     t.string   "name"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(version: 20141208225157) do
   end
 
   add_index "attachments", ["task_id"], name: "index_attachments_on_task_id", using: :btree
+
+  create_table "event_organisers", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "organiser_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_organisers", ["event_id"], name: "index_event_organisers_on_event_id", using: :btree
+  add_index "event_organisers", ["organiser_id"], name: "index_event_organisers_on_organiser_id", using: :btree
 
   create_table "events", force: true do |t|
     t.date     "start_date"
@@ -93,8 +103,10 @@ ActiveRecord::Schema.define(version: 20141208225157) do
     t.integer  "speaker_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "event_id"
   end
 
+  add_index "tasks", ["event_id"], name: "index_tasks_on_event_id", using: :btree
   add_index "tasks", ["organiser_id"], name: "index_tasks_on_organiser_id", using: :btree
   add_index "tasks", ["speaker_id"], name: "index_tasks_on_speaker_id", using: :btree
   add_index "tasks", ["sponsor_id"], name: "index_tasks_on_sponsor_id", using: :btree
