@@ -5,13 +5,17 @@ Rails.application.routes.draw do
 
   resources :speakers
 
-  resources :organisers
+  resources :organisers do
+    get :add_event, :on => :member
+  end
 
   resources :sponsors
 
   resources :events
 
   root 'events#index'
+
+  #get 'organisers/:id/add_to_event' => 'organisers#add_to_event'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

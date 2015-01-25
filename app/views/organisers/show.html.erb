@@ -27,8 +27,35 @@
 
 <p>
   <strong>Event:</strong>
-  <%= @organiser.event %>
+  <% @events.each do |event| %>
+    <%= event.kind %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_organiser_path(@organiser) %> |
-<%= link_to 'Back', organisers_path %>
+<%= link_to 'Back', organisers_path %> |
+<br>
+<br>
+<br>
+<br>
+
+
+
+<% if @organiser.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@organiser.errors.count, "error") %> prohibited this organiser from being saved:</h2>
+
+    <ul>
+    <% @organiser.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
+<%= form_tag({:controller => "organisers", :action => "add_event"}, {:method => "get"}) do |f| %>
+  <%= select_tag :event_id, options_for_select(Event.where.not(id: @organiser.event_ids).collect { |p| [ p.kind, p.id ] }) %>
+  <%= submit_tag "Dodaj event" %>
+<% end %>

@@ -1,6 +1,14 @@
 class OrganisersController < ApplicationController
   before_action :set_organiser, only: [:show, :edit, :update, :destroy]
 
+  def add_event
+    @organiser = Organiser.find(params[:id])
+    @event = Event.find(params[:event_id])
+    @organiser.events << @event
+    redirect_to organisers_url
+  end
+
+
   # GET /organisers
   # GET /organisers.json
   def index
@@ -10,6 +18,7 @@ class OrganisersController < ApplicationController
   # GET /organisers/1
   # GET /organisers/1.json
   def show
+    @events = @organiser.events
   end
 
   # GET /organisers/new

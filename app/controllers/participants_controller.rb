@@ -4,7 +4,7 @@ class ParticipantsController < ApplicationController
   # GET /participants
   # GET /participants.json
   def index
-    @participants = Participant.all
+    @participants = Participant.order(:event_id)
   end
 
   # GET /participants/1

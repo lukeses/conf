@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119213743) do
+ActiveRecord::Schema.define(version: 20150125231249) do
 
   create_table "attachments", force: true do |t|
     t.string   "name"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20150119213743) do
   create_table "events", force: true do |t|
     t.date     "start_date"
     t.string   "kind"
-    t.string   "type"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -49,12 +48,9 @@ ActiveRecord::Schema.define(version: 20150119213743) do
     t.string   "email"
     t.string   "skype"
     t.text     "description"
-    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "organisers", ["event_id"], name: "index_organisers_on_event_id", using: :btree
 
   create_table "participants", force: true do |t|
     t.string   "name"

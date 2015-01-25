@@ -8,7 +8,6 @@
       <th>Email</th>
       <th>Skype</th>
       <th>Description</th>
-      <th>Event</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,7 +20,6 @@
         <td><%= organiser.email %></td>
         <td><%= organiser.skype %></td>
         <td><%= organiser.description %></td>
-        <td><%= organiser.event %></td>
         <td><%= link_to 'Show', organiser %></td>
         <td><%= link_to 'Edit', edit_organiser_path(organiser) %></td>
         <td><%= link_to 'Destroy', organiser, method: :delete, data: { confirm: 'Are you sure?' } %></td>

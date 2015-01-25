@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  has_many :event_organisers
+  has_many :event_organisers, inverse_of: :event
   has_many :organisers, through: :event_organisers
 
   has_many :participants

@@ -25,7 +25,7 @@
         <td><%= participant.is_paid %></td>
         <td><%= participant.is_guest %></td>
         <td><%= participant.description %></td>
-        <td><%= participant.event %></td>
+        <td><%= participant.event.id %></td>
         <td><%= link_to 'Show', participant %></td>
         <td><%= link_to 'Edit', edit_participant_path(participant) %></td>
         <td><%= link_to 'Destroy', participant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
