@@ -25,11 +25,15 @@
   </div>
   <div class="field">
     <%= f.label :sponsor_id %><br>
-    <%= f.text_field :sponsor_id %>
+    <%= f.select :sponsor_id, options_for_select(Sponsor.all.collect { |p| [ p.name, p.id ] }), :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :organiser_id %><br>
     <%= f.text_field :organiser_id %>
+  </div>
+  <div class="field">
+    <%= f.label :event_id %><br>
+    <%= f.select :event_id, options_for_select(Event.all.collect { |p| [ p.kind, p.id ] }), :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :speaker_id %><br>
