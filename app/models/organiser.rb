@@ -37,7 +37,7 @@ scope :sorted_by, lambda { |sort_option|
   	where(id: country_ids)
   }
   scope :with_created_at_gte, lambda { |ref_date|
-  	where(id: ref_date)
+  	where(created_at: ref_date)
   }
 
 scope :search_query, lambda { |query|
