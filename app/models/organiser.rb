@@ -27,12 +27,7 @@ scope :sorted_by, lambda { |sort_option|
     order("organisers.created_at #{ direction }")
   when /^name_/
     # Simple sort on the name colums
-    order("LOWER(organisers.last_name) #{ direction }, LOWER(organisers.first_name) #{ direction }")
-  when /^country_name_/
-    # This sorts by a student's country name, so we need to include
-    # the country. We can't use JOIN since not all students might have
-    # a country.
-    order("LOWER(countries.name) #{ direction }").includes(:country)
+    order("LOWER(organisers.name) #{ direction }, LOWER(organisers.surname) #{ direction }")
   else
     raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
   end
@@ -66,8 +61,7 @@ def self.options_for_sorted_by
   [
     ['Name (a-z)', 'name_asc'],
     ['Registration date (newest first)', 'created_at_desc'],
-    ['Registration date (oldest first)', 'created_at_asc'],
-    ['Country (a-z)', 'country_name_asc']
+    ['Registration date (oldest first)', 'created_at_asc']
   ]
 end
 

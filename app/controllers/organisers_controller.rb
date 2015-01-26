@@ -29,10 +29,9 @@ class OrganisersController < ApplicationController
     # in the filterrific form.
     # In this example, the `#options_for_...` methods return arrays that can
     # be passed as options to `f.select`
-    # @filterrific.select_options = {
-    #   sorted_by: Student.options_for_sorted_by,
-    #   with_country_id: Country.options_for_select
-    # }
+    @filterrific.select_options = {
+      sorted_by: Organiser.options_for_sorted_by,
+    }
 
     # Get an ActiveRecord relation for all students that match the filter settings.
     # You can paginate with will_paginate or kaminari.
