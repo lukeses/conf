@@ -59,3 +59,9 @@
   <%= select_tag :event_id, options_for_select(Event.where.not(id: @organiser.event_ids).collect { |p| [ p.kind, p.id ] }) %>
   <%= submit_tag "Dodaj event" %>
 <% end %>
+
+
+<%= form_tag({:controller => "organisers", :action => "delete_event"}, {:method => "get"}) do |f| %>
+  <%= select_tag :event_id, options_for_select(Event.where(id: @organiser.event_ids).collect { |p| [ p.kind, p.id ] }) %>
+  <%= submit_tag "Usuń event" %>
+<% end %>

@@ -8,6 +8,15 @@ class OrganisersController < ApplicationController
     redirect_to organisers_url
   end
 
+  def delete_event
+    organiser = Organiser.find(params[:id])
+    event = organiser.events.find(params[:event_id])
+    if event
+      organiser.events.delete(event)
+    end
+    redirect_to organisers_url
+  end
+
 
   # GET /organisers
   # GET /organisers.json
