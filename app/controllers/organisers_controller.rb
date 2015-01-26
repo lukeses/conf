@@ -11,9 +11,55 @@ class OrganisersController < ApplicationController
 
   # GET /organisers
   # GET /organisers.json
+  # def index
+  #   @organisers = Organiser.all
+  # end
+
   def index
-    @organisers = Organiser.all
+    # Initialize the filter settings from the following data:
+    # 1. Request params from filter form submission
+    # 2. Params persisted in session
+    # 3. Filterrific default_settings defined in the Student model
+    @filterrific = Filterrific.new(
+      Organiser,
+      params[:filterrific] || session[:filterrific_organisers]
+    )
+
+    # Use `#select_options` as container to provide options to the select inputs
+    # in the filterrific form.
+    # In this example, the `#options_for_...` methods return arrays that can
+    # be passed as options to `f.select`
+    # @filterrific.select_options = {
+    #   sorted_by: Student.options_for_sorted_by,
+    #   with_country_id: Country.options_for_select
+    # }
+
+    # Get an ActiveRecord relation for all students that match the filter settings.
+    # You can paginate with will_paginate or kaminari.
+    # NOTE: filterrific_find returns an ActiveRecord Relation that can be
+    # chained with other scopes to further narrow down the scope of the list,
+    # e.g., to apply permissions or to hard coded exclude certain types of records.
+    @organisers = Organiser.filterrific_find(@filterrific)   #.page(params[:page])
+
+    # Persist the current filter settings in the session as a plain old Hash.
+    session[:filterrific_organisers] = @filterrific.to_hash
+
+    # Respond to html for initial page load and to js for AJAX filter updates.
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
+  # Recover from invalid param sets, e.g., when a filter refers to the
+  # database id of a record that doesn’t exist any more.
+  # In this case we reset filterrific and discard all filter params.
+  rescue ActiveRecord::RecordNotFound => e
+    # There is an issue with the persisted param_set. Reset it.
+    puts "Had to reset filterrific params: #{ e.message }"
+    redirect_to(action: :reset_filterrific, format: :html) and return
   end
+
+
 
   # GET /organisers/1
   # GET /organisers/1.json
@@ -69,6 +115,14 @@ class OrganisersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def reset_filterrific
+    # Clear session persistence
+    session[:filterrific_organisers] = nil
+    # Redirect back to the index action for default filter settings.
+    redirect_to action: :index
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :organisers do
     get :add_event, :on => :member
+    get :reset_filterrific, on: :collection
   end
 
   resources :sponsors
