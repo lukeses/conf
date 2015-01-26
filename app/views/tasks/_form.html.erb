@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :organiser_id %><br>
-    <%= f.text_field :organiser_id %>
+    <%= f.select :organiser_id, options_for_select(Organiser.all.collect { |p| [ p.surname, p.id ] }), :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :event_id %><br>
@@ -37,7 +37,7 @@
   </div>
   <div class="field">
     <%= f.label :speaker_id %><br>
-    <%= f.text_field :speaker_id %>
+    <%= f.select :speaker_id, options_for_select(Speaker.all.collect { |p| [ p.surname, p.id ] }), :include_blank => true %>
   </div>
   <div class="actions">
     <%= f.submit %>
