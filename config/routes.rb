@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   resources :events
 
+  get 'invitations' => 'invitations#index'
+
+
   root 'events#index'
 
   #get 'organisers/:id/add_to_event' => 'organisers#add_to_event'
