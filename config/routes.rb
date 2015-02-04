@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :events
 
   get 'invitations' => 'invitations#index'
-
+  get 'mail_footers' => 'mail_footers#index'
 
   root 'events#index'
 
