@@ -1,0 +1,16 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `invitation`(s VARCHAR(120), d DATE) RETURNS varchar(150) CHARSET utf8 COLLATE utf8_unicode_ci
+    DETERMINISTIC
+BEGIN
+
+DECLARE result varchar(150);
+	
+SET result = concat("Zapraszam na wydarzenie: ", s, ", które odbędzie się dnia: ", d);
+
+RETURN (result);
+END
