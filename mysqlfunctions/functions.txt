@@ -14,3 +14,16 @@ SET result = concat("Zapraszam na wydarzenie: ", s, ", które odbędzie się dni
 
 RETURN (result);
 END
+
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `mail_footers`()
+BEGIN
+	select kind, name, surname, email, skype from event_organisers join organisers on (organisers.id = event_organisers.organiser_id) join events on (events.id = event_organisers.event_id);
+END
